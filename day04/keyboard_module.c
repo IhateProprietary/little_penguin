@@ -48,5 +48,5 @@ module_init(keyboard_init);
 module_exit(keyboard_exit);
 
 MODULE_LICENSE("GPL");
-MODULE_AUTHOR("agrumbac");
+MODULE_AUTHOR("jye");
 MODULE_DESCRIPTION("This module detects when a keyboard is plugged in!");

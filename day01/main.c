@@ -3,7 +3,7 @@
 #include <linux/init.h>   /* Needed for the macros */
 
 MODULE_LICENSE("GPL");
-MODULE_AUTHOR("agrumbac");
+MODULE_AUTHOR("jye");
 MODULE_DESCRIPTION("This module does mind blowing things!");
 
 static int __init hello_init(void)
