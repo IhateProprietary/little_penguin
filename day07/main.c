@@ -76,7 +76,7 @@ static ssize_t foo_write(struct file *filp,		\
 		fookbuf_used += res;
 
 	spin_unlock(&x_lock);
-	return size;
+	return res;
 einval:
 	return -EINVAL;
 }
