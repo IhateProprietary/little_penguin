@@ -1,3 +1,19 @@
+// SPDX-License-Identifier: GPL-3.0
+/*
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
 #include <linux/module.h>
 #include <linux/kernel.h>
 #include <linux/miscdevice.h>
@@ -20,7 +36,7 @@ static ssize_t myfd_write(struct file *fp,
 
 static char str[PAGE_SIZE];
 
-static struct file_operations	myfd_fops = {
+static const struct file_operations	myfd_fops = {
 	.owner = THIS_MODULE,
 	.read = &myfd_read,
 	.write = &myfd_write
@@ -54,7 +70,7 @@ static ssize_t myfd_read(struct file *fp,
 	ssize_t	ret;
 	char *tmp;
 
-	if (user == NULL)
+	if (!user)
 		goto fail;
 
 	tmp = kmalloc(sizeof(char) * PAGE_SIZE * 2, GFP_KERNEL);
@@ -81,7 +97,7 @@ static ssize_t myfd_write(struct file *fp,
 {
 	ssize_t res;
 
-	if (user == NULL)
+	if (!user)
 		goto fail;
 
 	res = simple_write_to_buffer(str, PAGE_SIZE - 1, offs, user, size) + 1;
